@@ -25,6 +25,7 @@ class KnuthMorrisPratt:
         return prefix_f_values
 
     def find(self, text: str, sample: str) -> List[int]:
+        self.counter = 0
         prefix_f_values = self.calculate_prefix_function(sample)
         text_size = len(text)
         sample_size = len(sample)
@@ -52,10 +53,13 @@ class KnuthMorrisPratt:
 
         return found_indices
 
+    def get_operations_count(self):
+        return self.counter
+
 
 if __name__ == "__main__":
     kmp = KnuthMorrisPratt()
     text: str = 'abcdabcabcdabcdab'
     sample: str = 'abc'
     print(kmp.find(text, sample))
-    print(kmp.counter)
+    print(kmp.get_operations_count())
