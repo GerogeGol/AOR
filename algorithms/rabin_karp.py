@@ -1,4 +1,4 @@
-class RobinKarp:
+class RabinKarp:
     def __init__(self, alphabet_size: int, mod: int):
         self.alphabet_size = alphabet_size
         self.mod = mod
@@ -17,6 +17,8 @@ class RobinKarp:
 
     def find(self, text: str, pattern: str) -> int:
         self.counter = 0
+        found_indicies = []
+
         alphabet_size = self.alphabet_size
         mod = self.mod
 
@@ -27,7 +29,7 @@ class RobinKarp:
 
         self.counter += 1
         if pattern_hash == text_hash:
-            return 0
+            found_indicies.append(0)
 
         for i in range(1, len(text) - pattern_size + 1):
             sub_symbol = ord(text[i - 1])
@@ -40,9 +42,9 @@ class RobinKarp:
 
             self.counter += 1
             if text_hash == pattern_hash:
-                return i
+                found_indicies.append(i)
 
-        return -1
+        return found_indicies
 
     def get_operations_count(self) -> int:
         return self.counter
@@ -50,5 +52,5 @@ class RobinKarp:
 
 if __name__ == "__main__":
     rk = RobinKarp(256, 9973)
-    print(rk.find("bbcabc", "abc"))
+    print(rk.find("babcabc", "abc"))
     print(rk.find("абобабава", "абоб"))
