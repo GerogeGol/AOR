@@ -7,18 +7,11 @@ class Naive:
 
     def find(self, text: str, pattern: str) -> List[int]:
         self.counter = 0
+        pattern_size = len(pattern)
         found_indicies = []
 
-        for index in range(len(text)):
-            i = 0
-            for letter in pattern:
-                self.counter += 1
-                if letter != text[index + i]:
-                    break
-                i += 1
-
-            self.counter += 1
-            if i == len(pattern):
+        for index in range(len(text) - pattern_size + 1):
+            if pattern == text[index : index + pattern_size]:
                 found_indicies.append(index)
 
         return found_indicies

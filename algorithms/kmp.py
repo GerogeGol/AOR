@@ -44,7 +44,10 @@ class KnuthMorrisPratt:
             if curr_index_sample == sample_size:
                 found_indices.append(curr_index_text - curr_index_sample)
                 curr_index_sample = prefix_f_values[curr_index_sample - 1]
-            elif curr_index_text < text_size and sample[curr_index_sample] != text[curr_index_text]:
+            elif (
+                curr_index_text < text_size
+                and sample[curr_index_sample] != text[curr_index_text]
+            ):
                 self.counter += 1
                 if curr_index_sample != 0:
                     curr_index_sample = prefix_f_values[curr_index_sample - 1]
@@ -59,7 +62,12 @@ class KnuthMorrisPratt:
 
 if __name__ == "__main__":
     kmp = KnuthMorrisPratt()
-    text: str = 'abcdabcabcdabcdab'
-    sample: str = 'abc'
+    text: str = "abcdabcabcdabcdab"
+    sample: str = "abc"
+    print(kmp.find(text, sample))
+    print(kmp.get_operations_count())
+
+    text: str = "abcdabcabcdabcdab"
+    sample: str = "abc"
     print(kmp.find(text, sample))
     print(kmp.get_operations_count())

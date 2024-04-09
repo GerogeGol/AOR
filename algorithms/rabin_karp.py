@@ -28,7 +28,7 @@ class RabinKarp:
         text_hash = self.hash(text[:pattern_size])
 
         self.counter += 1
-        if pattern_hash == text_hash:
+        if pattern_hash == text_hash and pattern == text[:pattern_size]:
             found_indicies.append(0)
 
         for i in range(1, len(text) - pattern_size + 1):
@@ -41,7 +41,7 @@ class RabinKarp:
             text_hash %= mod
 
             self.counter += 1
-            if text_hash == pattern_hash:
+            if text_hash == pattern_hash and pattern == text[i : i + pattern_size]:
                 found_indicies.append(i)
 
         return found_indicies
