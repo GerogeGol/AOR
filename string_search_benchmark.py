@@ -1,6 +1,6 @@
 import time
 
-from kmp import KnuthMorrisPratt
+from algorithms.kmp import KnuthMorrisPratt
 
 
 class StringSearchBenchmark:
