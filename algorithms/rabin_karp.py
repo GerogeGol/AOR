@@ -3,6 +3,7 @@ class RabinKarp:
         self.alphabet_size = alphabet_size
         self.mod = mod
         self.counter = 0
+        self.preprocessing_time = 0
 
     def hash(self, string: str):
         alphabet_size = self.alphabet_size
@@ -15,18 +16,22 @@ class RabinKarp:
         val = (val + ord(string[-1])) % mod
         return val
 
+    def preprocessing(self, pattern: str):
+        self.pattern_hash = self.hash(pattern)
+        self.pattern_size = len(pattern)
+
     def find(self, text: str, pattern: str) -> int:
         self.counter = 0
-        found_indicies = []
 
         alphabet_size = self.alphabet_size
         mod = self.mod
 
-        pattern_hash = self.hash(pattern)
-        pattern_size = len(pattern)
+        pattern_hash = self.pattern_hash
+        pattern_size = self.pattern_size
 
         text_hash = self.hash(text[:pattern_size])
 
+        found_indicies = []
         self.counter += 1
         if pattern_hash == text_hash and pattern == text[:pattern_size]:
             found_indicies.append(0)
@@ -51,6 +56,6 @@ class RabinKarp:
 
 
 if __name__ == "__main__":
-    rk = RobinKarp(256, 9973)
+    rk = RabinKarp(256, 9973)
     print(rk.find("babcabc", "abc"))
     print(rk.find("абобабава", "абоб"))
